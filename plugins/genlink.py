@@ -31,7 +31,12 @@ async def gen_link_s(bot, message):
     string = 'filep_' if message.text.lower().strip() == "/plink" else 'file_'
     string += file_id
     outstr = base64.urlsafe_b64encode(string.encode("ascii")).decode().strip("=")
-    await message.reply(f"Here is your Link:\nhttps://t.me/{temp.U_NAME}?start={outstr}")    
+    user_id = message.from_user.id
+    user = await get_user(user_id)
+    if WEBSITE_URL_MODE == True:
+        share_link = f"{WEBSITE_URL}?Tech_VJ={outstr}"
+    else:
+        share_link = f"https://t.me/{username}?start={outstr}"    
     
 @Client.on_message(filters.command(['batch', 'pbatch']) & filters.create(allowed))
 async def gen_link_batch(bot, message):
