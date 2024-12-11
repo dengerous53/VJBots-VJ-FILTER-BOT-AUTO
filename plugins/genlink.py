@@ -34,11 +34,9 @@ async def gen_link_s(bot, message):
     user_id = message.from_user.id
     # Add WEBSITE_URL_MODE feature
     if WEBSITE_URL_MODE == True:
-        share_link = f"{WEBSITE_URL}?Tech_VJ={outstr}"
+        await message.reply(f"Here is your Link:\n{WEBSITE_URL}?Tech_VJ={outstr}")
     else:
-        share_link = f"https://t.me/{(await bot.get_me()).username}?start={outstr}"
-    
-    await message.reply(f"Here is your Link:\n{share_link}") 
+        await message.reply(f"Here is your Link:\nhttps://t.me/{temp.U_NAME}?start={outstr}")
     
 @Client.on_message(filters.command(['batch', 'pbatch']) & filters.create(allowed))
 async def gen_link_batch(bot, message):
